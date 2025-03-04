@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getVansAPI } from "./api";
+import { getVans_API } from "./api";
 
 export function useGetVans() {
   return useQuery({
-    queryFn: () => getVansAPI,
-    queryKey: ["driverdashboard"],
+    queryFn: () => getVans_API,
+    queryKey: ["vans"],
     staleTime: Infinity,
     gcTime: Infinity,
   });

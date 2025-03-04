@@ -2,7 +2,7 @@ import { createServer, Model, Response, Registry } from "miragejs";
 import { ModelDefinition, Server } from "miragejs/-types";
 
 // Define Van type
-interface Van {
+export interface Van {
   id: string;
   name: string;
   price: number;

@@ -1,5 +1,6 @@
 import axios from "axios";
 
-export const getVansAPI = () => {
-  return axios.get("/api/vans");
+export const getVans_API = async () => {
+  const response = await axios.get("/api/vans");
+  return response.data;
 };
