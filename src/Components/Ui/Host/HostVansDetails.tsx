@@ -5,8 +5,6 @@ import { useGetHostVanDetails_API } from "../../../service/queries";
 const HostVansDetails = () => {
   const { id } = useParams();
   const { data: hostVanDetail } = useGetHostVanDetails_API(id ? id : "");
-  console.log(hostVanDetail.vans);
-
   const navigate = useNavigate();
 
   return (
