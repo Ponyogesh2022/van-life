@@ -1,16 +1,10 @@
-import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { Van } from "../../../../server";
 import { ArrowLeft } from "lucide-react";
+import { useGetVanDetails_API } from "../../../service/queries";
 const VansDetailPage = () => {
   const { id } = useParams();
-  const [van, setVan] = useState<Van>();
-  useEffect(() => {
-    fetch(`/api/vans/${id}`)
-      .then((res) => res.json())
-      .then((data) => setVan(data.vans));
-  }, [id]);
-  console.log(van);
+
+  const { data: van } = useGetVanDetails_API(id ? id : "");
 
   return (
     <div className="w-[90%] m-auto">
@@ -22,7 +16,7 @@ const VansDetailPage = () => {
         <>
           <div className=" mt-5 md:w-full">
             <img
-              src={van?.imageUrl}
+              src={van?.vans?.imageUrl}
               alt=""
               className="md:w-full md:h-[600px]"
             />

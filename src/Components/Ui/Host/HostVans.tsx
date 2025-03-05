@@ -1,19 +1,15 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { Van } from "../../../../server";
+import { useGetHostVans_API } from "../../../service/queries";
 
 const HostVans = () => {
-  const [hostVans, setHostVans] = useState<Van[]>([]);
-  useEffect(() => {
-    fetch("/api/host/vans")
-      .then((res) => res.json())
-      .then((data) => setHostVans(data));
-  }, []);
+  const { data: hostVans } = useGetHostVans_API();
+
   return (
     <div>
       <h2 className="text-2xl font-semibold m-2">Your Listed Vans</h2>
       <div>
-        {hostVans?.map((hostvan) => (
+        {hostVans?.map((hostvan: Van) => (
           <Link
             key={hostvan?.id}
             to={`${hostvan?.id}`}

@@ -1,36 +1,15 @@
-import { useEffect, useState } from "react";
 import { Van } from "../../../../server";
 import { useNavigate } from "react-router";
+import { useGettVans_API } from "../../../service/queries";
 
 const Vans = () => {
-  const [vans, setVans] = useState<Van[]>([]);
-  useEffect(() => {
-    fetch("/api/vans")
-      .then((res) => res.json())
-      .then((data) => setVans(data.vans));
-  }, []);
+  const { data: vansData } = useGettVans_API();
   const navigate = useNavigate();
-
-  // async function getLocation(lat, lng) {
-  //   const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
-
-  //   try {
-  //     const response = await fetch(url);
-  //     const data = await response.json();
-  //     console.log(data.display_name); // Full address
-  //   } catch (error) {
-  //     console.error("Error fetching location:", error);
-  //   }
-  // }
-
-  // // Example usage
-  // getLocation(37.7749, -122.4194); // San Francisco, CA
-
   return (
     <>
       <p className="text-2xl   pl-5 mt-3">Explore our van options</p>
       <div className="grid grid-cols-2 w-[90%] m-auto gap-5 md:grid-cols-3">
-        {vans?.map((van) => (
+        {vansData?.vans?.map((van: Van) => (
           <div
             className="h-[280px] my-4"
             onClick={() => navigate(`/vans/${van.id}`)}
