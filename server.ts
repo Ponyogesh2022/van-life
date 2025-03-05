@@ -1,5 +1,6 @@
 import { createServer, Model, Response, Registry } from "miragejs";
-import { ModelDefinition, Schema } from "miragejs/-types";
+import { ModelDefinition } from "miragejs/-types";
+import Schema from "miragejs/orm/schema";
 
 // Define Van type
 export interface Van {
@@ -110,8 +111,12 @@ createServer({
     });
 
     this.get("/host/vans", (schema: AppSchema) => {
-      return schema.all("vans").models.filter((van) => van.hostId === "123");
+      return schema
+        .all("vans")
+        .models.map((model) => model.attrs as Van) // ✅ Extract attributes as Van
+        .filter((van) => van.hostId === "123"); // ✅ Now TypeScript recognizes `hostId`
     });
+
     this.get("/host/vans/:id", (schema: AppSchema, request) => {
       const id = request.params.id;
       const van = schema.find("vans", id);
