@@ -1,5 +1,9 @@
+import { useOutletContext } from "react-router";
+import { Van } from "../../../../server";
+
 const Pricing = () => {
-  return <div>Pricing</div>;
+  const vans = useOutletContext<Van | undefined>();
+  return <div className="p-4 font-bold text-xl">${vans?.price}/day</div>;
 };
 
 export default Pricing;

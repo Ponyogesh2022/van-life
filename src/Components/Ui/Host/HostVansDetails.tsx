@@ -46,7 +46,7 @@ const HostVansDetails = () => {
 
           <div>
             <HostVanLayout />
-            <Outlet />
+            <Outlet context={hostVanDetail?.vans} />
           </div>
         </div>
       </div>
