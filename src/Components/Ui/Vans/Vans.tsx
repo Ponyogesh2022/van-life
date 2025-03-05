@@ -11,6 +11,21 @@ const Vans = () => {
   }, []);
   const navigate = useNavigate();
 
+  // async function getLocation(lat, lng) {
+  //   const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
+
+  //   try {
+  //     const response = await fetch(url);
+  //     const data = await response.json();
+  //     console.log(data.display_name); // Full address
+  //   } catch (error) {
+  //     console.error("Error fetching location:", error);
+  //   }
+  // }
+
+  // // Example usage
+  // getLocation(37.7749, -122.4194); // San Francisco, CA
+
   return (
     <>
       <p className="text-2xl   pl-5 mt-3">Explore our van options</p>
@@ -19,6 +34,7 @@ const Vans = () => {
           <div
             className="h-[280px] my-4"
             onClick={() => navigate(`/vans/${van.id}`)}
+            key={van.id}
           >
             <div className="h-[80%]">
               <img src={van.imageUrl} alt="" className="h-full rounded-md" />

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Van } from "../../../../server";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { ArrowLeft } from "lucide-react";
 
 const HostVansDetails = () => {
@@ -11,11 +11,14 @@ const HostVansDetails = () => {
       .then((res) => res.json())
       .then((data) => setHostVan(data.vans));
   }, [id]);
-  console.log(hostVan);
+  const navigate = useNavigate();
 
   return (
     <div>
-      <div className="flex gap-5 mt-3 pl-3">
+      <div
+        className="flex gap-5 mt-3 pl-3"
+        onClick={() => navigate("/host/vans")}
+      >
         <ArrowLeft />
         <span>Back to Host Vans</span>
       </div>

@@ -8,8 +8,9 @@ const VansDetailPage = () => {
   useEffect(() => {
     fetch(`/api/vans/${id}`)
       .then((res) => res.json())
-      .then((data) => setVan(data));
-  }, []);
+      .then((data) => setVan(data.vans));
+  }, [id]);
+  console.log(van);
 
   return (
     <div className="w-[90%] m-auto">
