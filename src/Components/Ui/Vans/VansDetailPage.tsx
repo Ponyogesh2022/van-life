@@ -30,16 +30,16 @@ const VansDetailPage = () => {
                 : "bg-[#E17654]"
             }`}
           >
-            {van?.type
-              ? van.type.charAt(0).toUpperCase() + van.type.slice(1)
+            {van?.vans?.type
+              ? van?.vans.type.charAt(0).toUpperCase() + van?.vans.type.slice(1)
               : ""}
           </button>
-          <h1 className="text-2xl font-bold mt-3"> {van?.name}</h1>
+          <h1 className="text-2xl font-bold mt-3"> {van?.vans?.name}</h1>
           <h1 className="text-2xl font-bold mt-3">
-            ${van?.price}
+            ${van?.vans?.price}
             <span className="font-normal">/day</span>
           </h1>
-          <p className="font-medium mt-5">{van?.description}</p>
+          <p className="font-medium mt-5">{van?.vans?.description}</p>
           <button className="w-full h-fit py-3 bg-[#E17654] text-white font-semibold mt-4">
             Rent this van
           </button>
