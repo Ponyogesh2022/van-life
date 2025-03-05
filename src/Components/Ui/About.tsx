@@ -3,7 +3,7 @@ import AboutPic from "../../assets/aboutPic.png";
 
 const About = () => {
   return (
-    <div>
+    <div className="md:w-[96%] md:m-auto">
       <div>
         <img src={AboutPic} alt="" className="h-60  md:w-full md:h-[500px]" />
       </div>
@@ -18,9 +18,11 @@ const About = () => {
         </p>
       </div>
       <div className="bg-[#FFCC8D] p-10 md:m-auto">
-        <h1>Your destination is waiting. Your van is ready.</h1>
+        <h1 className="font-semibold md:text-2xl md:text-center">
+          Your destination is waiting. Your van is ready.
+        </h1>
         <Link to="#">
-          <div className="w-[85%] h-16 bg-black text-white text-lg flex justify-center items-center mt-5">
+          <div className="w-[85%] h-16 m-auto bg-black text-white text-lg flex justify-center items-center mt-5">
             Explore our Vans
           </div>
         </Link>

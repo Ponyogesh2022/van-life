@@ -18,7 +18,7 @@ const VansDetailPage = () => {
             <img
               src={van?.vans?.imageUrl}
               alt=""
-              className="md:w-full md:h-[600px]"
+              className="md:w-full md:h-fit"
             />
           </div>
           <button

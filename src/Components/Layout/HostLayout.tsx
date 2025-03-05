@@ -3,9 +3,9 @@ import { NavLink, Outlet } from "react-router";
 const HostLayout = () => {
   return (
     <>
-      <div className="flex gap-5 text-lg p-2">
+      <div className="flex gap-5 text-lg p-2 pl-5">
         <NavLink
-          to="/host"
+          to="."
           end
           className={({ isActive }) =>
             ` pb-2 ${isActive ? " border-b border-red-500 text-red-500" : ""}`
@@ -38,7 +38,9 @@ const HostLayout = () => {
           Reviews
         </NavLink>
       </div>
-      <Outlet />
+      <div className="pl-3">
+        <Outlet />
+      </div>
     </>
   );
 };

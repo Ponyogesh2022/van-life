@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <div className="">
       <div className="relative w-full">
-        <img src={HomePic} alt="" className="h-[100vh] w-full" />
+        <img src={HomePic} alt="" className="min-h-[100vh] w-full" />
       </div>
       <div className="absolute top-52 p-3 text-white md:left-[20%] ">
         <p className="text-3xl">
@@ -15,7 +15,7 @@ const Home = () => {
           perfect van to make your perfect road trip.
         </p>
         <Link to="#">
-          <div className="w-full h-16 bg-[#FF8C38] text-white text-lg flex justify-center items-center mt-36">
+          <div className="w-[80%] md:w-full m-auto h-16 bg-[#FF8C38] text-white text-lg flex justify-center items-center mt-36">
             Find Your Van
           </div>
         </Link>

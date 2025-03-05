@@ -12,6 +12,9 @@ import Income from "./Components/Ui/Host/Income.tsx";
 import Reviews from "./Components/Ui/Host/Reviews.tsx";
 import HostLayout from "./Components/Layout/HostLayout.tsx";
 import HostVans from "./Components/Ui/Host/HostVans.tsx";
+import Details from "./Components/Ui/HostVanDetail/Details.tsx";
+import Pricing from "./Components/Ui/HostVanDetail/Pricing.tsx";
+import Photos from "./Components/Ui/HostVanDetail/Photos.tsx";
 import HostVansDetails from "./Components/Ui/Host/HostVansDetails.tsx";
 
 function App() {
@@ -31,7 +34,12 @@ function App() {
               <Route path="income" element={<Income />} />
               <Route path="reviews" element={<Reviews />} />
               <Route path="vans" element={<HostVans />} />
-              <Route path="vans/:id" element={<HostVansDetails />} />
+              <Route path="vans/:id" element={<HostVansDetails />}>
+                <Route index element={<Details />} />
+                <Route path="details" element={<Details />} />
+                <Route path="pricing" element={<Pricing />} />
+                <Route path="photos" element={<Photos />} />
+              </Route>
             </Route>
           </Route>
         </Routes>
