@@ -3,10 +3,10 @@ import HomePic from "../../assets/homePic.png";
 const Home = () => {
   return (
     <div className="">
-      <div className="relative">
-        <img src={HomePic} alt="" className="h-[100vh]" />
+      <div className="relative w-full">
+        <img src={HomePic} alt="" className="h-[100vh] w-full" />
       </div>
-      <div className="absolute top-52 p-3 text-white ">
+      <div className="absolute top-52 p-3 text-white md:left-[20%] ">
         <p className="text-3xl">
           You got the travel plans, we got the travel vans.
         </p>

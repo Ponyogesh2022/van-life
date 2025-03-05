@@ -1,5 +1,5 @@
 import { createServer, Model, Response, Registry } from "miragejs";
-import { ModelDefinition, Server } from "miragejs/-types";
+import { ModelDefinition, Schema } from "miragejs/-types";
 
 // Define Van type
 export interface Van {
@@ -9,13 +9,16 @@ export interface Van {
   description: string;
   imageUrl: string;
   type: "simple" | "rugged" | "luxury";
+  hostId: string;
 }
 
 // Define MirageJS Model
 const VanModel: ModelDefinition<Van> = Model.extend({});
 
-// Define the MirageJS Schema Type
-type AppSchema = Registry<{ vans: typeof VanModel }, {}>;
+// Define MirageJS Schema Type
+type EmptyFactories = Record<string, never>;
+type AppRegistry = Registry<{ vans: typeof VanModel }, EmptyFactories>;
+type AppSchema = Schema<AppRegistry>; // ✅ Corrected Schema type
 
 // Create the MirageJS server
 createServer({
@@ -33,6 +36,7 @@ createServer({
       imageUrl:
         "https://assets.scrimba.com/advanced-react/react-router/modest-explorer.png",
       type: "simple",
+      hostId: "123",
     });
     server.create("van", {
       id: "2",
@@ -43,6 +47,7 @@ createServer({
       imageUrl:
         "https://assets.scrimba.com/advanced-react/react-router/beach-bum.png",
       type: "rugged",
+      hostId: "123",
     });
     server.create("van", {
       id: "3",
@@ -53,6 +58,7 @@ createServer({
       imageUrl:
         "https://assets.scrimba.com/advanced-react/react-router/reliable-red.png",
       type: "luxury",
+      hostId: "456",
     });
     server.create("van", {
       id: "4",
@@ -63,6 +69,7 @@ createServer({
       imageUrl:
         "https://assets.scrimba.com/advanced-react/react-router/dreamfinder.png",
       type: "simple",
+      hostId: "789",
     });
     server.create("van", {
       id: "5",
@@ -73,6 +80,7 @@ createServer({
       imageUrl:
         "https://assets.scrimba.com/advanced-react/react-router/the-cruiser.png",
       type: "luxury",
+      hostId: "789",
     });
     server.create("van", {
       id: "6",
@@ -83,19 +91,30 @@ createServer({
       imageUrl:
         "https://assets.scrimba.com/advanced-react/react-router/green-wonder.png",
       type: "rugged",
+      hostId: "123",
     });
   },
 
   routes() {
     this.namespace = "api";
 
-    this.get("/vans", (schema: Server<AppSchema>) => {
-      return schema.db.vans;
+    // ✅ FIXED: Use Schema<AppSchema> instead of Server<AppSchema>
+    this.get("/vans", (schema: AppSchema) => {
+      return schema.all("vans");
     });
 
-    this.get("/vans/:id", (schema: Server<AppSchema>, request) => {
+    this.get("/vans/:id", (schema: AppSchema, request) => {
       const id = request.params.id;
-      const van = schema.db.vans.find(id);
+      const van = schema.find("vans", id);
+      return van ? van : new Response(404, {}, { error: "Van not found" });
+    });
+
+    this.get("/host/vans", (schema: AppSchema) => {
+      return schema.all("vans").models.filter((van) => van.hostId === "123");
+    });
+    this.get("/host/vans/:id", (schema: AppSchema, request) => {
+      const id = request.params.id;
+      const van = schema.find("vans", id);
       return van ? van : new Response(404, {}, { error: "Van not found" });
     });
   },
