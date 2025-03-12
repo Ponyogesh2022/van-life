@@ -12,7 +12,7 @@ const HostVans = () => {
         {hostVans?.map((hostvan: Van) => (
           <Link
             key={hostvan?.id}
-            to={`${hostvan?.id}`}
+            to={hostvan?.id}
             className=" w-[90%] md:w-[98%] p-3 m-auto h-[80px] mx-3 pl-4 grid grid-cols-[50px_1fr] gap-5 content-center bg-white my-2"
           >
             <div>

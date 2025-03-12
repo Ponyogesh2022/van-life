@@ -98,7 +98,6 @@ createServer({
 
   routes() {
     this.namespace = "api";
-
     // ✅ FIXED: Use Schema<AppSchema> instead of Server<AppSchema>
     this.get("/vans", (schema: AppSchema) => {
       return schema.all("vans");

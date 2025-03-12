@@ -1,16 +1,21 @@
-import { Link, useParams } from "react-router";
+import { Link, useLocation, useParams } from "react-router";
 import { ArrowLeft } from "lucide-react";
 import { useGetVanDetails_API } from "../../../service/queries";
 const VansDetailPage = () => {
   const { id } = useParams();
-
+  const location = useLocation();
   const { data: van } = useGetVanDetails_API(id ? id : "");
+  const vansType = location.state.type || "all";
 
   return (
     <div className="w-[90%] m-auto">
-      <Link to="/vans" className="flex gap-5 ml-3 mt-4 ">
+      <Link
+        to={`..?${location.state.search}`}
+        relative="path"
+        className="flex gap-5 ml-3 mt-4 "
+      >
         <ArrowLeft />
-        <span>Back to all vans</span>
+        <span>Back to {vansType} Vans</span>
       </Link>
       {van ? (
         <>

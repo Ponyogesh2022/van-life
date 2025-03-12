@@ -5,6 +5,7 @@ export function useGettVans_API() {
   return useQuery({
     queryKey: ["fetchvans"],
     queryFn: fetchVans,
+    staleTime: 0,
   });
 }
 export function useGetVanDetails_API(id: string) {
