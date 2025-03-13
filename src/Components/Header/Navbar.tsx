@@ -1,3 +1,4 @@
+import { CircleUser } from "lucide-react";
 import { NavLink } from "react-router";
 
 const Navbar = () => {
@@ -24,6 +25,12 @@ const Navbar = () => {
           to="/vans"
         >
           Vans
+        </NavLink>
+        <NavLink
+          className={({ isActive }) => ` pb-2 ${isActive ? " border-b" : ""}`}
+          to="/login"
+        >
+          <CircleUser />
         </NavLink>
       </div>
     </div>

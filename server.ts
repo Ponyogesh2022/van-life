@@ -98,8 +98,10 @@ createServer({
 
   routes() {
     this.namespace = "api";
+    // this.timing = 3000;
     // ✅ FIXED: Use Schema<AppSchema> instead of Server<AppSchema>
     this.get("/vans", (schema: AppSchema) => {
+      // return new Response(400, {}, { error: "Error fetching data" });
       return schema.all("vans");
     });
 

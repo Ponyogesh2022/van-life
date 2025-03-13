@@ -23,6 +23,8 @@ import HostVansDetails from "./Components/Ui/Host/HostVansDetails.tsx";
 import NotFound from "./Components/Ui/404/NotFound.tsx";
 import About from "./Components/Ui/About.tsx";
 import Vans, { loader as vansLoader } from "./Components/Ui/Vans/Vans.tsx";
+import Error from "./Components/Ui/Error/Error.tsx";
+import Login from "./Components/Login/Login.tsx";
 function App() {
   const queryClient = new QueryClient();
   const router = createBrowserRouter(
@@ -30,7 +32,13 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
-        <Route path="vans" element={<Vans />} loader={vansLoader} />
+        <Route path="login" element={<Login />} />
+        <Route
+          path="vans"
+          element={<Vans />}
+          loader={vansLoader}
+          errorElement={<Error />}
+        />
         <Route path="vans/:id" element={<VansDetailPage />} />
 
         <Route path="host" element={<HostLayout />}>

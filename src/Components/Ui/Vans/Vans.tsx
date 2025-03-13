@@ -18,6 +18,7 @@ const Vans = () => {
       return prev;
     });
   }
+  // throw new Error("sorry");
 
   const vansData = useLoaderData();
   // console.log(data.vans);
